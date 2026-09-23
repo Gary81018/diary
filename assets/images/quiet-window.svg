@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+<title id="title">窗边的午后</title><desc id="desc">一幅几何插画：暖色的墙、窗外的山、桌上的书和一只杯子。</desc>
+<rect width="1200" height="640" fill="#e9e4d7"/><path d="M0 530h1200v110H0z" fill="#c8b99d"/>
+<rect x="315" y="60" width="570" height="410" rx="160" fill="#a9b9ac"/><path d="M315 361Q490 250 650 361T885 315v155H315z" fill="#829889"/><path d="M315 427Q570 300 885 427v43H315z" fill="#617c69"/>
+<circle cx="710" cy="164" r="43" fill="#f6ebc9"/><path d="M600 61v409M315 275h570" stroke="#e9e4d7" stroke-width="15"/>
+<rect x="279" y="468" width="642" height="16" rx="5" fill="#f7f1e4"/><path d="m170 530 210-17 110 43-224 14z" fill="#eee7d8"/><path d="m170 530 96 40v16l-96-39z" fill="#9eaa95"/><path d="m266 570 224-14v14l-224 16z" fill="#506c5b"/>
+<path d="M823 479h86v62a16 16 0 0 1-16 16h-54a16 16 0 0 1-16-16z" fill="#f6f0df"/><path d="M909 492h11a20 20 0 0 1 0 40h-11" fill="none" stroke="#f6f0df" stroke-width="10"/>
+</svg>

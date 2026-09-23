@@ -1,0 +1,41 @@
+title: "Gary's Diary"
+description: "记录生活、学习，和一些偶然出现的想法。"
+author: "Gary"
+lang: zh-CN
+timezone: Asia/Singapore
+
+# 仓库名是 diary 时保留 /diary；用户名.github.io 仓库改为 ""。
+url: "https://gary81018.github.io"
+baseurl: "/diary"
+# 若使用自定义域名，填写 "用户名/仓库名"；普通 github.io 地址可自动识别。
+github_repository: "Gary81018/diary"
+github_branch: main
+permalink: /:year/:month/:day/:title/
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+future: false
+strict_front_matter: true
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - new-diary.sh
+  - scripts
+  - vendor
+  - .bundle
+  - LICENSE

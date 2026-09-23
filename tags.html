@@ -1,0 +1,13 @@
+---
+title: 标签
+permalink: /tags/
+---
+<section class="collection-page">
+  <header class="page-header"><span class="eyebrow">TOPICS</span><h1>想到哪里，写到哪里<span class="accent">。</span></h1><p>沿着一个话题，重新遇见那些想法。</p></header>
+  {% assign tags = site.tags | sort %}
+  <nav class="tag-index" aria-label="选择话题">{% for tag in tags %}<a href="#{{ tag[0] | uri_escape }}">{{ tag[0] | escape }} <span>{{ tag[1] | size }}</span></a>{% endfor %}</nav>
+  {% for tag in tags %}
+  <section class="tag-section" id="{{ tag[0] | escape }}"><div class="year-heading"><h2>{{ tag[0] | escape }}</h2><span>{{ tag[1] | size }} 篇记录</span></div>
+  <ul class="tag-posts">{% for post in tag[1] %}<li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time></li>{% endfor %}</ul></section>
+  {% else %}<p class="empty-state">日记添加标签后，会自动整理在这里。</p>{% endfor %}
+</section>

@@ -1,0 +1,36 @@
+---
+title: 写日记
+permalink: /write/
+---
+<section class="writer-page" data-repository="{{ site.github_repository | escape }}" data-baseurl="{{ site.baseurl | escape }}" data-branch="{{ site.github_branch | default: 'main' | escape }}" data-timezone="{{ site.timezone | default: 'Asia/Singapore' | escape }}">
+  <header class="page-header">
+    <span class="eyebrow">A NEW PAGE</span>
+    <h1>今天，写一点<span class="accent">。</span></h1>
+    <p>写好的日记会直接提交到你的 GitHub 仓库。公开博客中的日记，任何人都可以阅读。</p>
+  </header>
+  <form id="diary-form" novalidate>
+    <div class="writer-grid">
+      <label class="writer-field">日期 <input name="date" type="date" required></label>
+      <label class="writer-field">标题 <input name="title" type="text" maxlength="120" placeholder="给今天起个名字" required></label>
+    </div>
+    <label class="writer-field">正文 <textarea name="body" rows="14" maxlength="100000" placeholder="今天值得记住的是……" required></textarea></label>
+    <div class="writer-grid">
+      <label class="writer-field">标签 <input name="tags" type="text" maxlength="120" placeholder="生活, 随想"></label>
+      <label class="writer-field">文件名后缀 <input name="slug" type="text" maxlength="48" value="diary" pattern="[a-z0-9]+(-[a-z0-9]+)*" aria-describedby="slug-hint"><small id="slug-hint">同一天写第二篇时改成别的英文名，如 evening</small></label>
+    </div>
+    <p class="draft-bar" id="draft-status" role="status">草稿自动保存在当前浏览器。</p>
+    <div class="writer-actions"><button id="publish-button" class="publish-button" type="submit">提交日记 <span aria-hidden="true">↗</span></button></div>
+    <p id="publish-status" class="publish-status" role="status" aria-live="polite"></p>
+    <a id="commit-link" class="aside-link" href="https://github.com" target="_blank" rel="noopener noreferrer" hidden>查看 GitHub 提交 ↗</a>
+  </form>
+  <dialog id="token-dialog" class="token-dialog" aria-labelledby="token-dialog-title">
+    <form id="token-form" method="dialog">
+      <h2 id="token-dialog-title">连接 GitHub</h2>
+      <p>首次提交时，输入仅授权日记仓库的令牌。令牌只用于这次提交，不会保存到浏览器。</p>
+      <label class="writer-field">GitHub 仓库令牌 <input id="token-input" type="password" spellcheck="false" autocomplete="new-password" required placeholder="github_pat_…"></label>
+      <a class="token-help" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">创建限于此仓库、Contents 可写的令牌 ↗</a>
+      <div class="token-dialog-actions"><button id="token-cancel" type="button">取消</button><button class="publish-button" type="submit">继续提交</button></div>
+    </form>
+  </dialog>
+</section>
+<script src="{{ '/assets/js/write.js' | relative_url }}" defer></script>

@@ -1,0 +1,36 @@
+---
+title: 管理日记
+permalink: /manage/
+---
+<section class="manage-page" data-repository="{{ site.github_repository | escape }}" data-branch="{{ site.github_branch | default: 'main' | escape }}">
+  <header class="page-header"><span class="eyebrow">YOUR JOURNAL</span><h1>管理日记<span class="accent">。</span></h1><p>选择一篇日记，在网页上修改或删除。操作会提交到 GitHub，网站更新需要几分钟。</p></header>
+  <ul class="manage-list" id="manage-list">
+    {% for post in site.posts %}<li class="manage-item" data-path="{{ post.path | escape }}" data-title="{{ post.title | escape }}">
+      <div><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></div>
+      <div class="manage-item-actions"><button type="button" data-action="edit">修改</button><button type="button" data-action="delete">删除</button></div>
+    </li>{% else %}<li class="empty-state">还没有已发布的日记。</li>{% endfor %}
+  </ul>
+  <p id="manage-status" class="publish-status" role="status" aria-live="polite"></p>
+  <form id="manage-editor" class="manage-editor" hidden>
+    <h2>修改日记</h2>
+    <label class="writer-field">标题 <input name="title" type="text" maxlength="120" required></label>
+    <label class="writer-field">标签 <input name="tags" type="text" maxlength="120" placeholder="生活, 随想"></label>
+    <label class="writer-field">正文 <textarea name="body" rows="14" maxlength="100000" required></textarea></label>
+    <div class="manage-item-actions"><button class="publish-button" type="submit">保存修改</button><button id="cancel-edit" type="button">取消</button></div>
+  </form>
+  <dialog id="delete-dialog" class="token-dialog" aria-labelledby="delete-title">
+    <h2 id="delete-title">确认删除？</h2>
+    <p id="delete-description"></p>
+    <div class="token-dialog-actions"><button id="cancel-delete" type="button">取消</button><button id="confirm-delete" class="danger-button" type="button">删除这篇日记</button></div>
+  </dialog>
+  <dialog id="manage-token-dialog" class="token-dialog" aria-labelledby="manage-token-title">
+    <form id="manage-token-form" method="dialog">
+      <h2 id="manage-token-title">连接 GitHub</h2>
+      <p>输入仅授权日记仓库的令牌。令牌只用于这次操作，不会保存到浏览器。</p>
+      <label class="writer-field">GitHub 仓库令牌 <input id="manage-token-input" type="password" spellcheck="false" autocomplete="new-password" required placeholder="github_pat_…"></label>
+      <a class="token-help" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">创建限于此仓库、Contents 可写的令牌 ↗</a>
+      <div class="token-dialog-actions"><button id="cancel-token" type="button">取消</button><button class="publish-button" type="submit">继续操作</button></div>
+    </form>
+  </dialog>
+</section>
+<script src="{{ '/assets/js/manage.js' | relative_url }}" defer></script>

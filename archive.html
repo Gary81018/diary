@@ -1,0 +1,14 @@
+---
+title: 归档
+permalink: /archive/
+---
+<section class="collection-page">
+  <header class="page-header"><span class="eyebrow">ARCHIVE</span><h1>时间的目录<span class="accent">。</span></h1><p>共 {{ site.posts | size }} 篇记录，每一篇都是某一天的切片。</p></header>
+  {% assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
+  {% for year in years %}
+  <section class="archive-year"><div class="year-heading"><h2>{{ year.name }}</h2><span>{{ year.items | size }} 篇</span></div>
+    {% assign months = year.items | group_by_exp: 'post', "post.date | date: '%m'" %}
+    {% for month in months %}<h3 class="month-heading">{{ month.name | plus: 0 }} 月</h3><ol class="entry-list">{% for post in month.items %}{% include entry.html compact=true %}{% endfor %}</ol>{% endfor %}
+  </section>
+  {% else %}<p class="empty-state">还没有日记，故事即将开始。</p>{% endfor %}
+</section>

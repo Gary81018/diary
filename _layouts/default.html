@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'zh-CN' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+    <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+    {% if site.url != '' %}<link rel="canonical" href="{{ page.url | absolute_url }}">{% endif %}
+    <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="site-header shell">
+      <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title | escape }} 首页"><span class="brand-mark" aria-hidden="true">g.</span>{{ site.title | escape }}</a>
+      <nav aria-label="主导航">
+        <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>日记</a>
+        <a href="{{ '/archive/' | relative_url }}"{% if page.url == '/archive/' %} aria-current="page"{% endif %}>归档</a>
+        <a href="{{ '/tags/' | relative_url }}"{% if page.url == '/tags/' %} aria-current="page"{% endif %}>标签</a>
+        <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>关于</a>
+        <a class="nav-write" href="{{ '/write/' | relative_url }}"{% if page.url == '/write/' %} aria-current="page"{% endif %}>写日记 <span aria-hidden="true">↗</span></a>
+        <a href="{{ '/manage/' | relative_url }}"{% if page.url == '/manage/' %} aria-current="page"{% endif %}>管理</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="切换颜色模式" title="颜色模式" hidden><span aria-hidden="true">◐</span><span class="theme-label">自动</span></button>
+    </header>
+    <main id="main" class="shell" tabindex="-1">{{ content }}</main>
+    <footer class="site-footer shell"><span>© {{ 'now' | date: '%Y' }} {{ site.author | escape }}</span><span>日子很长，慢慢记录。<span class="footer-dot" aria-hidden="true"> ●</span></span></footer>
+  </body>
+</html>

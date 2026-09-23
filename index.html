@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<section class="home-intro">
+  <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span>A PERSONAL JOURNAL</div>
+  <h1>把日子，<br>慢慢写下来<span class="accent">。</span></h1>
+  <p>{{ site.description | escape }}<br>不必每一天都特别，但总有一些值得记住的瞬间。</p>
+  <div class="intro-foot"><span>生活 · 学习 · 随想</span><span class="small-note">一页一页，留给未来的自己</span></div>
+</section>
+<div class="journal-layout">
+  <aside class="journal-aside">
+    <h2 class="section-label">日记簿 <span>/ JOURNAL</span></h2>
+    <p>写下当下，<br>也留住沿途的风景。</p>
+    <div class="journal-count"><strong>{{ site.posts | size }}</strong><span>篇记录</span></div>
+    <a class="aside-link" href="{{ '/archive/' | relative_url }}">翻看所有日记 <span aria-hidden="true">↗</span></a>
+    <div class="aside-tags"><span class="eyebrow">常写的话题</span><div class="tag-links">{% assign topics = site.tags | sort %}{% for tag in topics %}<a href="{{ '/tags/' | relative_url }}#{{ tag[0] | uri_escape }}">{{ tag[0] | escape }}</a>{% endfor %}</div></div>
+  </aside>
+  <section class="timeline" aria-label="日记时间线">
+    {% assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
+    {% for year in years %}
+    <div class="year-heading"><h2>{{ year.name }}</h2><span>{{ year.items | size }} 篇记录</span></div>
+    <ol class="entry-list">{% for post in year.items %}{% include entry.html %}{% endfor %}</ol>
+    {% else %}<div class="empty-state"><h2>故事从这里开始。</h2><p>还没有日记，给今天留下一句话吧。</p></div>{% endfor %}
+    <p class="end-note">— {% if site.posts.size > 0 %}这是故事的开始{% else %}等一段新的故事{% endif %} —</p>
+  </section>
+</div>
